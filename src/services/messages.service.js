@@ -1,6 +1,5 @@
 import { Clients } from "../lib/sequelize.js";
 import nodemailer from "nodemailer";
-console.log(process.env.service);
 let transporter = nodemailer.createTransport({
   service: process.env.service,
   auth: {
@@ -11,7 +10,6 @@ let transporter = nodemailer.createTransport({
 });
 
 export const newMessage = (name, phone, email, niche, meet, sendEmail) => {
-  console.log(name, phone, email, niche, meet, sendEmail);
   return Clients.create({
     name: name,
     phone: phone,

@@ -2,14 +2,13 @@ import { Clients } from "../lib/sequelize.js";
 import nodemailer from "nodemailer";
 console.log(process.env.service);
 let transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  service: process.env.service,
   auth: {
-    type: "OAuth2",
-    user: process.env.usersmpt,
-    accessToken: process.env.accessToken,
-}});
+    type: process.env.type,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+  },
+});
 
 export const newMessage = (name, phone, email, niche, meet, sendEmail) => {
   console.log(name, phone, email, niche, meet, sendEmail);
@@ -23,8 +22,14 @@ export const newMessage = (name, phone, email, niche, meet, sendEmail) => {
   });
 };
 
-export const emailSender = async (name, phone, email, niche, meet) => {
-  const info = await transporter.sendMail({
+export const emailSender = (name, phone, email, niche, meet) => {
+  const info = transporter.sendMail({
+    auth: {
+      user: process.env.usersmtp,
+      refreshToken: process.env.refreshToken,
+      accessToken: process.env.accessToken,
+      expires: 1484314697598,
+    },
     from: "agenciatrillion01@gmail.com",
     to: "agenciatrillion01@gmail.com",
 

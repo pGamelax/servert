@@ -1,7 +1,9 @@
 import { Clients } from "../lib/sequelize.js";
 import nodemailer from "nodemailer";
 let transporter = nodemailer.createTransport({
-  service: process.env.service,
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     type: process.env.type,
     clientId: process.env.clientId,

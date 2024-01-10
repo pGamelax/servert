@@ -1,8 +1,5 @@
 import { DataTypes, Sequelize } from "sequelize";
 
-console.log(process.env.HOST)
-console.log(process.env.USERNAME)
-console.log(process.env.PASSWORD)
 export const sequelize = new Sequelize(process.env.DATABASE, process.env.USERPS, process.env.PASSWORD, {
   host: process.env.HOST,
   dialect: process.env.DIALECT,

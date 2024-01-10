@@ -1,17 +1,15 @@
 import { Clients } from "../lib/sequelize.js";
 import nodemailer from "nodemailer";
-
+console.log(process.env.service);
 let transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: process.env.service,
   auth: {
-    type: "OAuth2",
-    user: "agenciatrillion01@gmail.com",
-    pass: "Rmfsq21bla6@",
-    clientId:
-      "971863165434-opakb0t0vm6lp0tg449hlpfsdeat668k.apps.googleusercontent.com",
-    clientSecret: "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",
-    refreshToken:
-      "1//04hKkW3G6H80qCgYIARAAGAQSNwF-L9IrnFNt9lRW3_S5PbE4csrn-NIbKTMb51KRwSuzuQmgT_g5c4sEHinz_f5NAWPpPZyDBO0",
+    type: process.env.type,
+    user: process.env.usersmtp,
+    pass: process.env.pass,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+    refreshToken: process.env.refreshToken,
   },
 });
 
